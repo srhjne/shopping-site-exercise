@@ -84,16 +84,15 @@ def show_shopping_cart():
     costs = {}
     for melon in melon_short:
         melon_obj = melons.get_by_id(melon)
+        melon_obj.cost = cart[melon] * melon_obj.price
+        melon_obj.qty = cart[melon]
+        total += melon_obj.cost
         melon_object.append(melon_obj)
-
-        cost = cart[melon] * melon_obj.price
-        costs[melon] = cost
-        total += cost
 
     print total
     print melon_object
     return render_template("cart.html", melon_object=melon_object,
-                           cart=cart, costs=costs, total='{:.2f}'.format(total))
+                          total='{:.2f}'.format(total))
 
 
 @app.route("/add_to_cart/<melon_id>")

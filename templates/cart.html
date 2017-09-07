@@ -16,9 +16,9 @@
         {% for melon in melon_object%}
         <tr>
             <td>{{melon.common_name}}</td>
-            <td>{{cart[melon.melon_id]}}</td>
+            <td>{{melon.qty}}</td>
             <td>{{'%.2f' % melon.price}}</td>
-            <td>{{'%.2f' % costs[melon.melon_id]}}</td>
+            <td>{{'%.2f' % melon.cost}}</td>
         </tr>
         {% endfor%}
         </tbody>
