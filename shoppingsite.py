@@ -158,14 +158,13 @@ def process_login():
         flash("Incorrect login")
         return redirect("/login")
 
-    if customer_info.password == password:
+    if customer_info.is_correct_password(password):
         flash("Successful login")
         session["logged_in_customer_email"] = email
         return redirect("/melons")
     else:
         flash("Incorrect password")
         return redirect("/login")
-
 
 
 @app.route("/checkout")
@@ -178,6 +177,12 @@ def checkout():
     flash("Sorry! Checkout will be implemented in a future version.")
     return redirect("/melons")
 
+
+@app.route("/logout")
+def logout():
+    del session["logged_in_customer_email"]
+    flash("Logged Out")
+    return redirect("/melons")
 
 if __name__ == "__main__":
     app.run(debug=True)
